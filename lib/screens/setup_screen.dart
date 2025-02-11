@@ -159,9 +159,7 @@ class _SetupScreenState extends State<SetupScreen> {
         _selectedProvider,
       );
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('API key saved successfully')),
-        );
+        Navigator.of(context).pushReplacementNamed('/test');
       }
     } catch (e) {
       if (mounted) {
