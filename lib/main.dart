@@ -16,9 +16,55 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Text Rephraser',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF0A0E21),
+        primaryColor: const Color(0xFF00FF9C),
+        colorScheme: const ColorScheme.dark().copyWith(
+          primary: const Color(0xFF00FF9C),
+          secondary: const Color(0xFF00D1FF),
+          surface: const Color(0xFF1D1F3E),
+        ),
+        cardTheme: CardTheme(
+          color: const Color(0xFF1D1F3E),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+            side: const BorderSide(
+              color: Color(0xFF00FF9C),
+              width: 1,
+            ),
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: const Color(0xFF1D1F3E),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color(0xFF00FF9C)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color(0xFF00FF9C)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color(0xFF00D1FF), width: 2),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF00FF9C),
+            foregroundColor: Colors.black,
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: const Color(0xFF00FF9C),
+          ),
+        ),
       ),
       routes: {
         '/': (context) => FutureBuilder<bool>(
@@ -26,7 +72,11 @@ class MyApp extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Scaffold(
-                    body: Center(child: CircularProgressIndicator()),
+                    body: Center(
+                      child: CircularProgressIndicator(
+                        color: Color(0xFF00FF9C),
+                      ),
+                    ),
                   );
                 }
                 return snapshot.data == true
